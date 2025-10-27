@@ -23,22 +23,13 @@ import EnterAttendance from "./pages/Attendance/EnterAttendance";
 
 // Dashboard Pages
 import DashboardLayout from "./pages/Dashboard/DashboardLayout";
+import UnifiedDashboard from "./pages/Dashboard/UnifiedDashboard";
 import ExamBank from "./pages/Dashboard/ExamBank"; 
 import ScoreCenter from "./pages/Dashboard/ScoreCenter"; 
 import ProfileCard from "./pages/Dashboard/ProfileCard";
 import ReportCardDashboard from "./pages/Dashboard/ReportCardDashboard";
 import BulkReportCenter from "./pages/Dashboard/BulkReportCenter";
 import TeachingPortal from './pages/Dashboard/TeachingPortal';
-
-// Role-Specific Dashboard Imports
-import PrincipalDashboard from "./pages/Dashboard/roles/PrincipalDashboard";
-import VPAdminDashboard from "./pages/Dashboard/roles/VPAdminDashboard";
-import VPAcademicDashboard from "./pages/Dashboard/roles/VPAcademicDashboard";
-import SeniorMasterDashboard from "./pages/Dashboard/roles/SeniorMasterDashboard";
-import ExamOfficerDashboard from "./pages/Dashboard/roles/ExamOfficerDashboard";
-import FormMasterDashboard from "./pages/Dashboard/roles/FormMasterDashboard";
-import SubjectTeacherDashboard from "./pages/Dashboard/roles/SubjectTeacherDashboard";
-import AdminDashboard from "./pages/Dashboard/roles/AdminDashboard";
 
 import { initializeClassData } from "./data/classes";
 import { initializeAttendanceData } from "./data/attendanceConfig";
@@ -79,14 +70,6 @@ function AppContent() {
     <>
       {!isDashboard && <Navbar />}
 
-      {/* Mobile/Desktop indicator - remove after testing */}
-      <div className="lg:hidden fixed top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs z-50">
-        📱 Mobile
-      </div>
-      <div className="hidden lg:block fixed top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded text-xs z-50">
-        🖥️ Desktop
-      </div>
-
       <Routes>
         {/* ===================== Public Routes ===================== */}
         <Route path="/" element={<LandingPage />} />
@@ -106,19 +89,16 @@ function AppContent() {
 
         {/* ===================== Dashboard Routes ===================== */}
         <Route path="/dashboard" element={<DashboardLayout />}>
-          {/* Default dashboard route */}
-          <Route index element={<PrincipalDashboard />} />
-          <Route path="/dashboard/teaching-portal" element={<TeachingPortal />} />
-
-          {/* Role-specific dashboards */}
-          <Route path="principal" element={<PrincipalDashboard />} />
-          <Route path="vp-admin" element={<VPAdminDashboard />} />
-          <Route path="vp-academic" element={<VPAcademicDashboard />} />
-          <Route path="senior-master" element={<SeniorMasterDashboard />} />
-          <Route path="exam-officer" element={<ExamOfficerDashboard />} />
-          <Route path="form-master" element={<FormMasterDashboard />} />
-          <Route path="teacher" element={<SubjectTeacherDashboard />} />
-          <Route path="admin" element={<AdminDashboard />} />
+          {/* ALL role-specific dashboards use UnifiedDashboard */}
+          <Route index element={<UnifiedDashboard />} />
+          <Route path="principal" element={<UnifiedDashboard />} />
+          <Route path="vp-admin" element={<UnifiedDashboard />} />
+          <Route path="vp-academic" element={<UnifiedDashboard />} />
+          <Route path="senior-master" element={<UnifiedDashboard />} />
+          <Route path="exam-officer" element={<UnifiedDashboard />} />
+          <Route path="form-master" element={<UnifiedDashboard />} />
+          <Route path="teacher" element={<UnifiedDashboard />} />
+          <Route path="admin" element={<UnifiedDashboard />} />
 
           {/* Dashboard utility pages */}
           <Route path="profile" element={<ProfileCard />} />
@@ -126,6 +106,7 @@ function AppContent() {
           <Route path="score-center" element={<ScoreCenter />} />
           <Route path="bulk-reports" element={<BulkReportCenter />} />
           <Route path="exam-officer/report-cards" element={<ReportCardDashboard />} />
+          <Route path="teaching-portal" element={<TeachingPortal />} />
         </Route>
 
         {/* 404 Page */}

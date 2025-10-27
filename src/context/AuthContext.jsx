@@ -1,4 +1,3 @@
-// src/context/AuthContext.jsx - UPDATED
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext({
@@ -24,8 +23,8 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Check if current user is admin
-    setIsAdmin(user?.role === "admin");
+    // Fix: Check for "Admin" with capital A (not "admin")
+    setIsAdmin(user?.role === "Admin");
   }, [user]);
 
   const setUser = (userData) => {

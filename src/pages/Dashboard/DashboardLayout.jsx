@@ -1,4 +1,3 @@
-// src/pages/Dashboard/DashboardLayout.jsx - CLEAN VERSION
 import React, { useState, useEffect } from "react";
 import { useNavigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext"; 
